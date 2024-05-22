@@ -12,4 +12,5 @@ members = [
     "learning/variables",
     "learning/ownership",
     "learning/structures",
+    "learning/rectangles",
 ]
