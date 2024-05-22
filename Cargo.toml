@@ -13,4 +13,6 @@ members = [
     "learning/ownership",
     "learning/structures",
     "learning/rectangles",
+    "learning/enums",
+    "learning/my-project",
 ]
