@@ -1,0 +1,14 @@
+[workspace]
+
+members = [
+    "exercises/celsius_to_fahrenheit",
+    "exercises/nth_fibonacci",
+    "exercises/twelve_days",
+    "learning/branches",
+    "learning/functions",
+    "learning/guessing_game",
+    "learning/hello_cargo",
+    "learning/loops",
+    "learning/variables",
+    "learning/ownership",
+]
