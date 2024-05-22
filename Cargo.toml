@@ -11,4 +11,5 @@ members = [
     "learning/loops",
     "learning/variables",
     "learning/ownership",
+    "learning/structures",
 ]
