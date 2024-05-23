@@ -5,6 +5,7 @@ members = [
     "exercises/nth_fibonacci",
     "exercises/twelve_days",
     "exercises/median_and_mode",
+    "exercises/pig_latin",
     "learning/branches",
     "learning/functions",
     "learning/guessing_game",
@@ -17,5 +18,5 @@ members = [
     "learning/enums",
     "learning/backyard",
     "learning/restaurant",
-    "learning/collections",
+    "learning/collections", 
 ]
