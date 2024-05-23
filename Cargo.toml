@@ -14,5 +14,5 @@ members = [
     "learning/structures",
     "learning/rectangles",
     "learning/enums",
-    "learning/backyard", "learning/restaurant",
+    "learning/backyard", "learning/restaurant", "learning/collections",
 ]
