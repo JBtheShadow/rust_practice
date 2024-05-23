@@ -4,6 +4,7 @@ members = [
     "exercises/celsius_to_fahrenheit",
     "exercises/nth_fibonacci",
     "exercises/twelve_days",
+    "exercises/median_and_mode",
     "learning/branches",
     "learning/functions",
     "learning/guessing_game",
@@ -14,5 +15,7 @@ members = [
     "learning/structures",
     "learning/rectangles",
     "learning/enums",
-    "learning/backyard", "learning/restaurant", "learning/collections",
+    "learning/backyard",
+    "learning/restaurant",
+    "learning/collections",
 ]
