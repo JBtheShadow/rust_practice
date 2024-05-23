@@ -2,7 +2,7 @@ mod front_of_house;
 
 mod back_of_house;
 
-fn deliver_order() {}
+fn _deliver_order() {}
 
 // This allows someone to call
 //   restaurant::hosting::add_to_waitlist()
@@ -33,6 +33,6 @@ pub fn eat_at_restaurant() {
     // to see or modify the seasonal fruit that comes with the meal
     // meal.seasonal_fruit = String::from("blueberries");
 
-    let order1 = Appetizer::Soup;
-    let order2 = Appetizer::Salad;
+    let _order1 = Appetizer::Soup;
+    let _order2 = Appetizer::Salad;
 }

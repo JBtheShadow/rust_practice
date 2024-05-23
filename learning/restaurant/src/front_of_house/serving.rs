@@ -1,5 +1,5 @@
-fn take_order() {}
+fn _take_order() {}
 
-fn serve_order() {}
+fn _serve_order() {}
 
-fn take_payment() {}
+fn _take_payment() {}
