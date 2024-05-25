@@ -22,4 +22,5 @@ members = [
     "learning/collections",
     "learning/generics",
     "learning/aggregator",
+    "learning/adder",
 ]
