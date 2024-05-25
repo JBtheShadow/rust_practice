@@ -3,7 +3,7 @@ use std::{thread, time::Duration};
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
-    height: u32,
+    _height: u32,
 }
 
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -106,18 +106,18 @@ fn main() {
         .unwrap();
 
     let mut list = [
-        Rectangle { width: 10, height: 1 },
-        Rectangle { width: 3, height: 5 },
-        Rectangle { width: 7, height: 12 },
+        Rectangle { width: 10, _height: 1 },
+        Rectangle { width: 3, _height: 5 },
+        Rectangle { width: 7, _height: 12 },
     ];
 
     list.sort_by_key(|r| r.width);
     println!("{:#?}", list);
 
     let mut list = [
-        Rectangle { width: 10, height: 1 },
-        Rectangle { width: 3, height: 5 },
-        Rectangle { width: 7, height: 12 },
+        Rectangle { width: 10, _height: 1 },
+        Rectangle { width: 3, _height: 5 },
+        Rectangle { width: 7, _height: 12 },
     ];
 
     let mut num_sort_operations = 0;

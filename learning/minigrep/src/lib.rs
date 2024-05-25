@@ -12,19 +12,26 @@ impl Config {
     // PS: std::env::args() panics if the arguments have anything non-Unicode
     // If your application needs it, use std::env::args_os(), which returns
     // an iterator of OsString instead
-    pub fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
+    pub fn build(
+        mut args: impl Iterator<Item = String>
+    ) -> Result<Config, &'static str> {
+        // Ignore first argument which would be the exe name
+        args.next();
 
-        // Clone is not very efficient but it's the simplest method
-        // for now to solve ownership problems
-        // We may see other ways to handle that in the future
-        let query = args[1].clone();
-        let file_path = args[2].clone();
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a query string"),
+        };
 
-        let ignore_case = args.contains(&String::from("--ignore-case"))
-            || env::var("IGNORE_CASE").is_ok();
+        let file_path = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a file path"),
+        };
+
+        let ignore_case = match args.next() {
+            Some(arg) if arg == "--ignore-case" => true,
+            _ => env::var("IGNORE_CASE").is_ok(),
+        };
 
         Ok(Config { query, file_path, ignore_case })
     }
@@ -47,28 +54,18 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-    
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-    
-    results
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    let mut results = Vec::new();
-
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
-            results.push(line);
-        }
-    }
-
-    results
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query))
+        .collect()
 }
 
 #[cfg(test)]
