@@ -20,4 +20,6 @@ members = [
     "learning/backyard",
     "learning/restaurant",
     "learning/collections",
+    "learning/generics",
+    "learning/aggregator",
 ]
