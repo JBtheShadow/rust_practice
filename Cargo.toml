@@ -24,4 +24,5 @@ members = [
     "learning/aggregator",
     "learning/adder",
     "learning/minigrep",
+    "learning/shirt_giveaway",
 ]
