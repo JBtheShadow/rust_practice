@@ -23,4 +23,5 @@ members = [
     "learning/generics",
     "learning/aggregator",
     "learning/adder",
+    "learning/minigrep",
 ]
