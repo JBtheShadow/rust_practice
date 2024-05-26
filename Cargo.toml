@@ -26,4 +26,5 @@ members = [
     "learning/minigrep",
     "learning/shirt_giveaway",
     "learning/mock-objects",
+    "learning/trees",
 ]
