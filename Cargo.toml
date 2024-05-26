@@ -25,4 +25,5 @@ members = [
     "learning/adder",
     "learning/minigrep",
     "learning/shirt_giveaway",
+    "learning/mock-objects",
 ]
