@@ -28,4 +28,5 @@ members = [
     "learning/mock-objects",
     "learning/trees",
     "learning/threads",
+    "learning/channel_messaging",
 ]
