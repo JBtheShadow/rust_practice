@@ -30,4 +30,5 @@ members = [
     "learning/threads",
     "learning/channel_messaging",
     "learning/shared_state",
+    "learning/trait_objects",
 ]
