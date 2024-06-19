@@ -27,4 +27,5 @@ members = [
     "learning/shirt_giveaway",
     "learning/mock-objects",
     "learning/trees",
+    "learning/threads",
 ]
