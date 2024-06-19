@@ -29,4 +29,5 @@ members = [
     "learning/trees",
     "learning/threads",
     "learning/channel_messaging",
+    "learning/shared_state",
 ]
