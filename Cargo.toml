@@ -31,5 +31,6 @@ members = [
     "learning/channel_messaging",
     "learning/shared_state",
     "learning/trait_objects",
-    "learning/blog",
+    "learning/blog", 
+    "learning/pattern_matching",
 ]
