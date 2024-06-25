@@ -1,123 +1,67 @@
 pub struct Post {
-    state: Option<Box<dyn State>>,
     content: String,
 }
 
 impl Post {
-    pub fn new() -> Post {
-        Post {
-            state: Some(Box::new(Draft {})),
+    pub fn new() -> DraftPost {
+        DraftPost {
             content: String::new(),
         }
     }
 
-    pub fn add_text(&mut self, text: &str) {
-        if let Some(s) = self.state.take() {
-            if s.can_modify_post() {
-                self.content.push_str(text);
-            }
-            self.state = Some(s);
-        }
-    }
-
-    pub fn request_review(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.request_review())
-        }
-    }
-
-    pub fn approve(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.approve())
-        }
-    }
-
-    pub fn reject(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.reject())
-        }
-    }
-
     pub fn content(&self) -> &str {
-        self.state.as_ref().unwrap().content(self)
+        &self.content
     }
 }
 
-trait State {
-    fn request_review(self: Box<Self>) -> Box<dyn State>;
-    fn approve(self: Box<Self>) -> Box<dyn State>;
-    fn reject(self: Box<Self>) -> Box<dyn State>;
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
-        ""
-    }
-    fn can_modify_post(&self) -> bool {
-        false
-    }
+pub struct DraftPost {
+    content: String,
 }
 
-struct Draft {}
-
-impl State for Draft {
-    // self: Box<Self> makes it so you can only call this on boxed types
-    // Taking ownership of it so that it can return a new state
-    // This leaves the original state field as a None instead of a Some
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
-        Box::new(PendingReview { review_count: 0 })
+impl DraftPost {
+    pub fn add_text(&mut self, text: &str) {
+        self.content.push_str(text);
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
-        self
-    }
-
-    fn reject(self: Box<Self>) -> Box<dyn State> {
-        self
-    }
-
-    fn can_modify_post(&self) -> bool {
-        true
-    }
-}
-
-struct PendingReview {
-    review_count: u32,
-}
-
-impl State for PendingReview {
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
-        self
-    }
-
-    fn approve(self: Box<Self>) -> Box<dyn State> {
-        let review_count = (*self).review_count;
-        if review_count > 0 {
-            Box::new(Published{})
+    pub fn request_review(self) -> PendingReviewPost {
+        PendingReviewPost {
+            content: self.content,
         }
-        else {
-            Box::new(PendingReview{ review_count: review_count + 1 })
+    }
+}
+
+pub struct PendingReviewPost {
+    content: String,
+}
+
+impl PendingReviewPost {
+    pub fn approve(self) -> PartiallyApprovedReviewPost {
+        PartiallyApprovedReviewPost {
+            content: self.content,
         }
     }
 
-    fn reject(self: Box<Self>) -> Box<dyn State> {
-        Box::new(Draft {})
+    pub fn reject(self) -> DraftPost {
+        DraftPost {
+            content: self.content,
+        }
     }
 }
 
-struct Published {}
+pub struct PartiallyApprovedReviewPost {
+    content: String,
+}
 
-impl State for Published {
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
-        self
+impl PartiallyApprovedReviewPost {
+    pub fn approve(self) -> Post {
+        Post {
+            content: self.content,
+        }
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
-        self
-    }
-    
-    fn reject(self: Box<Self>) -> Box<dyn State> {
-        self
-    }
-
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
-        &post.content
+    pub fn reject(self) -> DraftPost {
+        DraftPost {
+            content: self.content,
+        }
     }
 }
