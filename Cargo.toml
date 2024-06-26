@@ -39,4 +39,5 @@ members = [
     "learning/advanced_functions",
     "learning/about_macros",
     "learning/hello_macro",
+    "learning/web_server",
 ]
