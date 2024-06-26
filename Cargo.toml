@@ -37,4 +37,6 @@ members = [
     "learning/advanced_traits",
     "learning/advanced_types",
     "learning/advanced_functions",
+    "learning/about_macros",
+    "learning/hello_macro",
 ]
