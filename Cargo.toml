@@ -34,5 +34,5 @@ members = [
     "learning/blog", 
     "learning/pattern_matching",
     "learning/unsafe_rust",
-    "learning/advanced_traits",
+    "learning/advanced_traits", "learning/advanced_types",
 ]
